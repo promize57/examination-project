@@ -1,0 +1,37 @@
+http://18.233.169.80/
+
+Name: promise sunday
+
+
+1. Server Provisioning:
+
+Launched an Amazon EC2 instance utilizing the Ubuntu Server 22.04 LTS operating system.
+Selected an appropriate instance type (t2.micro) for the project's initial requirements.
+Configured a security group within AWS to permit inbound traffic on port 22 (SSH) for secure remote access and port 80 (HTTP) to enable web traffic.
+2. Server Setup and Configuration:
+
+Established an SSH connection to the newly launched EC2 instance.
+Updated the system's package lists and upgraded existing packages to their latest versions using apt update and apt upgrade -y.
+Installed the Apache2 web server using apt install apache2.
+Started and enabled the Apache2 service to run automatically on system boot using systemctl start apache2 and systemctl enable apache2.
+3. Project Deployment:
+
+Created a local HTML file containing:
+The project title: "Welcome to [Your Name] Landing Page."
+A brief project description.
+Your name and a concise bio.
+Created a project directory within the server's document root: sudo mkdir -p /var/www/html/your_project_name.
+Transferred the HTML file to the server using scp or another secure file transfer method.
+Cloned the project's Git repository to the server using sudo -u www-data git clone git@github.com:your_username/your_repository_name.git /var/www/html/your_project_name.
+4. Apache Configuration:
+
+Created a VirtualHost configuration file (/etc/apache2/sites-available/your_project_name.conf) to define the server's behavior for this specific project.
+Configured the VirtualHost with appropriate directives, including the DocumentRoot path and AllowOverride settings.
+Enabled the new VirtualHost configuration using a2ensite your_project_name.conf.
+Disabled the default Apache site (a2dissite 000-default.conf) to avoid conflicts.
+Restarted the Apache service (systemctl restart apache2) to apply the configuration changes.
+5. Verification and Testing:
+
+Accessed the deployed landing page by navigating to the server's public IP address in a web browser.
+Verified the correct display of the HTML content.
+This comprehensive approach outlines the key steps undertaken to provision the server, set up the web server environment, deploy the project, and configure Apache to serve the landing page effectively.
